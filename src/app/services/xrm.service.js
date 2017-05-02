@@ -11,27 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise");
+var account_1 = require("../account");
 var angular2_jwt_1 = require("angular2-jwt/angular2-jwt");
-var MessageService = (function () {
-    function MessageService(http) {
+var XrmService = (function () {
+    function XrmService(http) {
         this.http = http;
-        this.messageUrl = 'https://xxxx.crm.dynamics.com/';
+        this.orgUrl = 'https://ms-dyn365-prev000749.api.crm4.dynamics.com/';
     }
-    MessageService.prototype.getMessage = function (id) {
-        return this.http.get(this.messageUrl + 'api/data/v8.0/accounts')
+    XrmService.prototype.getAccounts = function () {
+        var _this = this;
+        return this.http.get(this.orgUrl + 'api/data/v8.2/accounts')
             .toPromise()
-            .then(function (response) { return response.json(); })
+            .then(function (response) { return _this.buildAccounts(response.json().value); })
             .catch(this.handleError);
     };
-    MessageService.prototype.handleError = function (error) {
-        console.error('An error occurred', error); // for demo purposes only
+    XrmService.prototype.buildAccounts = function (jsonResponse) {
+        var res = jsonResponse;
+        var accounts = [];
+        res.forEach(function (r) {
+            var a = new account_1.Account(r.name, r.accountid);
+            accounts.push(a);
+        });
+        return accounts;
+    };
+    XrmService.prototype.handleError = function (error) {
+        console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
-    return MessageService;
+    return XrmService;
 }());
-MessageService = __decorate([
+XrmService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [angular2_jwt_1.AuthHttp])
-], MessageService);
-exports.MessageService = MessageService;
-//# sourceMappingURL=message.service.js.map
+], XrmService);
+exports.XrmService = XrmService;
+//# sourceMappingURL=xrm.service.js.map

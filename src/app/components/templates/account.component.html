@@ -1,0 +1,8 @@
+<div *ngIf="accounts; else noMessage">
+    <ul>
+        <li *ngFor="let account of accounts">
+            name: {{account.name}}, id: {{account.accountid}}
+        </li>
+    </ul>
+</div>
+<button (click)="getAccounts()">Get Accounts</button>

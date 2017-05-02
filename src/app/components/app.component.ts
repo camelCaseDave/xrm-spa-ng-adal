@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SecretService } from './secret.service';
-import { AdalService } from "ng2-adal/core";
+import { SecretService } from '../services/secret.service';
+import { AdalService } from 'ng2-adal/core';
 
 @Component({
   selector: 'my-app',
-  template: `<a routerLink="/">HOME</a> <a routerLink="messages">Messages</a> <a routerLink="login">Log in/out</a>
-    <h1>Hello {{name}}</h1>
-    <router-outlet></router-outlet>`
+  templateUrl: './templates/app.component.html'
 })
-export class AppComponent implements OnInit { 
-  name = 'Angular'; 
+export class AppComponent implements OnInit {
+  name = 'Angular and Typescript quickstart';
 
   constructor(
     private adalService: AdalService,

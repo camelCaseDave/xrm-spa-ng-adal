@@ -1,0 +1,3 @@
+<div *ngIf="!isAuthenticated">You need to login first</div>
+<button *ngIf="!isAuthenticated" (click)="logIn()">Login</button>
+<button *ngIf="isAuthenticated" (click)="logOut()">Logout</button>

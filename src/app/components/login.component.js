@@ -10,28 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var secret_service_1 = require("./secret.service");
 var core_2 = require("ng2-adal/core");
-var AppComponent = (function () {
-    function AppComponent(adalService, secretService) {
+var LoginComponent = (function () {
+    function LoginComponent(adalService) {
         this.adalService = adalService;
-        this.secretService = secretService;
-        this.name = 'Angular';
-        this.adalService.init(this.secretService.adalConfig);
+        this.isAuthenticated = false;
+        this.isAuthenticated = this.adalService.userInfo.isAuthenticated;
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.adalService.handleWindowCallback();
-        this.adalService.getUser();
+    LoginComponent.prototype.logIn = function () {
+        this.adalService.login();
     };
-    return AppComponent;
+    LoginComponent.prototype.logOut = function () {
+        this.adalService.logOut();
+    };
+    return LoginComponent;
 }());
-AppComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        template: "<a routerLink=\"/\">HOME</a> <a routerLink=\"messages\">Messages</a> <a routerLink=\"login\">Log in/out</a>\n    <h1>Hello {{name}}</h1>\n    <router-outlet></router-outlet>"
+        selector: 'welcome',
+        templateUrl: './templates/login.component.html'
     }),
-    __metadata("design:paramtypes", [core_2.AdalService,
-        secret_service_1.SecretService])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+    __metadata("design:paramtypes", [core_2.AdalService])
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map

@@ -3,12 +3,10 @@ import { AdalService } from 'ng2-adal/core';
 
 @Component({
     selector: 'welcome',
-    template: `<div *ngIf="!isAuthenticated">You need to login first</div>
-    <button *ngIf="!isAuthenticated" (click)="logIn()">Login</button>
-    <button *ngIf="isAuthenticated" (click)="logOut()">Logout</button>`
+    templateUrl: './templates/login.component.html'
 })
 export class LoginComponent {
-    isAuthenticated : Boolean = false;
+    isAuthenticated: Boolean = false;
 
     constructor(
         private adalService: AdalService

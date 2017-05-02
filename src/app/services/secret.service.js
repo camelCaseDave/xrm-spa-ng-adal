@@ -1,5 +1,3 @@
-// fill in [your tenant] and [the application ID] below
-// and rename this file to secret.service.ts
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -15,11 +13,11 @@ var SecretService = (function () {
     Object.defineProperty(SecretService.prototype, "adalConfig", {
         get: function () {
             return {
-                tenant: 'xxxxx.onmicrosoft.com',
-                clientId: '74e56cd8-6c87-4760-8fb5-1cb6378808c9',
+                tenant: 'chorusco.onmicrosoft.com',
+                clientId: 'b78b00a8-ebd3-429c-9a95-bac717bc1b9f',
                 redirectUri: window.location.origin + '/',
                 postLogoutRedirectUri: window.location.origin + '/',
-                resourceId: "https://xxxx.crm.dynamics.com/"
+                resourceId: 'https://ms-dyn365-prev000749.api.crm4.dynamics.com/'
             };
         },
         enumerable: true,
