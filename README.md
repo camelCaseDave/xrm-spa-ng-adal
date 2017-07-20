@@ -1,4 +1,5 @@
-# angular-adal-xrm-quickstart
+## Overview
+A quickstart project for building single page applications for Dynamics CRM.
 
-<h3>Useage</h3>
-<p>npm start</p>
+## Usage
+npm start
